@@ -1,0 +1,27 @@
+{
+  "name": "lvnacy-obsidian-scripts",
+  "version": "1.0.0",
+  "description": "Scripts for template, dashboard, and project automation in Obsidian.",
+  "keywords": [
+    "obsidian",
+    "javascript",
+    "templates",
+    "project",
+    "management"
+  ],
+  "homepage": "https://github.com/lvnacy-obsidian/scripts#readme",
+  "bugs": {
+    "url": "https://github.com/lvnacy-obsidian/scripts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvnacy-obsidian/scripts.git"
+  },
+  "license": "MIT",
+  "author": "LVNACY",
+  "type": "module",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

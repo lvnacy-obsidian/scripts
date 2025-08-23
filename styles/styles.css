@@ -1,0 +1,72 @@
+.league-gothic-normal {
+    font-family: 'league-gothic', sans-serif;
+    font-style: normal;
+    font-stretch: normal; /* Uses regular */
+}
+
+.league-gothic-italic {
+    font-family: 'league-gothic', sans-serif;
+    font-style: italic;
+    font-stretch: normal; /* Uses italic */
+}
+
+.league-gothic-condensed {
+    font-family: 'league-gothic', sans-serif;
+    font-style: normal;
+    font-stretch: condensed; /* Uses condensed */
+}
+
+.league-gothic-condensed-italic {
+    font-family: 'league-gothic', sans-serif;
+    font-style: italic;
+    font-stretch: condensed; /* Uses condensed italic */
+}
+
+.modalTitle {
+    color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.modalTitle h1 {
+    margin: 0 0 10px 0;
+    color: blueviolet;
+    font-size: 1.5em;
+}
+
+.modalLabel {
+    --text-normal: #ffffff;
+    --font-weight: 700;
+}
+
+/* Modal Background styles */
+
+/* Alternative: Using vault resource path */
+.modal-vault-background {
+    background-image: var(--modal-bg-image);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Modal background classes (for reference - using direct styling in JS) */
+.modal-default-background {
+    --modal-background: #c75022;
+}
+
+/* Modal content overlay for better readability */
+.modal-content-overlay {
+    background: rgba(255, 255, 255, 0.50);
+    border-radius: 8px;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode support for overlay */
+.theme-dark .modal-content-overlay {
+    background: rgba(30, 30, 30, 0.95);
+}

@@ -1,14 +1,11 @@
 import {
-    ButtonComponent,
-    Setting,
-    TextComponent
+    Setting
 } from 'obsidian';
 import { BaseModal } from "./modals";
 
 class ExampleModal extends BaseModal {
     constructor(app, onSubmit, backgroundImage) {
         super(app, onSubmit, backgroundImage);
-        // No need to set these again - parent constructor handles them
     }
 
     async createForm() {
@@ -21,11 +18,10 @@ class ExampleModal extends BaseModal {
         
         const form = contentEl.createDiv();
         form.addClass('modalTitle');
-        // Apply the modalTitle class from styles.css
         form.createEl('h1', { 
             text: 'WHATEVER',
-            cls: 'league-gothic-italic'
-        })//.style.fontFamily = 'league-gothic, sans-serif';
+            // cls: 'league-gothic-italic'
+        });
         
 
         const labels = contentEl.createDiv()
@@ -34,7 +30,7 @@ class ExampleModal extends BaseModal {
         console.log(Setting);
 
         new Setting(labels)
-            // .setClass('modalLabel')
+            .setClass('avenir-book')
             .setName('blah')
             .setDesc('oh you know, blah')
             .addText(text => {
@@ -44,6 +40,7 @@ class ExampleModal extends BaseModal {
             });
 
         new Setting(labels)
+            .setClass('avenir-book')
             .setName('other blah')
             .addText(text => {
                 text.onChange(result => {

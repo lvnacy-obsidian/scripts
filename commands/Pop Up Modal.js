@@ -6,12 +6,14 @@ async function onSubmitCallback(result) {
     return result;
 }
 
-const bg = '.obsidian/js/assets/modalbg.jpg';
+const bg = '.obsidian/js/assets/rebecca.jpg';
 
 export async function invoke(app) {
 
     const blah = await launchModal(app, onSubmitCallback, bg);
 
     console.log(blah);
+
+    return blah;
 
 }

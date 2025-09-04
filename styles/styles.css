@@ -1,33 +1,11 @@
-.league-gothic-normal {
-    font-family: 'league-gothic', sans-serif;
-    font-style: normal;
-    font-stretch: normal; /* Uses regular */
-}
-
-.league-gothic-italic {
-    font-family: 'league-gothic', sans-serif;
-    font-style: italic;
-    font-stretch: normal; /* Uses italic */
-}
-
-.league-gothic-condensed {
-    font-family: 'league-gothic', sans-serif;
-    font-style: normal;
-    font-stretch: condensed; /* Uses condensed */
-}
-
-.league-gothic-condensed-italic {
-    font-family: 'league-gothic', sans-serif;
-    font-style: italic;
-    font-stretch: condensed; /* Uses condensed italic */
-}
-
 .modalTitle {
     color: blueviolet;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 10px;
+    font-family: 'league-gothic', sans-serif;
+    font-style: italic;
 }
 
 .modalTitle h1 {
@@ -37,8 +15,11 @@
 }
 
 .modalLabel {
-    --text-normal: #ffffff;
-    --font-weight: 700;
+    --text-normal: {
+        color: #ed756f;
+        font-weight: bold;
+    };
+    --text-muted: #ffffff;
 }
 
 /* Modal Background styles */

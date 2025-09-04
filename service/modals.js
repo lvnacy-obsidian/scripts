@@ -5,7 +5,7 @@ import {
 // Load CSS styles from the vault
 async function loadModalStyles(app) {
     try {
-        const cssContent = await app.vault.adapter.read('.obsidian/js/styles/styles.css');
+        const cssContent = await app.vault.adapter.read('.obsidian/js/main.css');
         
         // Check if styles are already injected to avoid duplicates
         if (!document.getElementById('modal-styles')) {
@@ -88,7 +88,6 @@ export class BaseModal extends Modal {
     createForm() {};
 
     resolveAndClose(evt, value) {
-        // this.submitted = true;
         evt.preventDefault();
         this.resolve(value);
         this.close();

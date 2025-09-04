@@ -1,0 +1,83 @@
+/* Light */
+.avenir-light {
+    font-family: 'avenir', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* Light Oblique */
+.avenir-light-oblique {
+    font-family: 'avenir', sans-serif;
+    font-weight: 300;
+    font-style: oblique;
+}
+
+/* Book */
+.avenir-book {
+    font-family: 'avenir', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Book Oblique */
+.avenir-book-oblique {
+    font-family: 'avenir', sans-serif;
+    font-weight: 400;
+    font-style: oblique;
+}
+
+/* Roman */
+.avenir-roman {
+    font-family: 'avenir', sans-serif;
+    font-weight: 450;
+    font-style: normal;
+}
+
+/* Oblique */
+.avenir-oblique {
+    font-family: 'avenir', sans-serif;
+    font-weight: 450;
+    font-style: oblique;
+}
+
+/* Medium */
+.avenir-medium {
+    font-family: 'avenir', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Medium Oblique */
+.avenir-medium-oblique {
+    font-family: 'avenir', sans-serif;
+    font-weight: 500;
+    font-style: oblique;
+}
+
+/* Heavy */
+.avenir-heavy {
+    font-family: 'avenir', sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+/* Heavy Oblique*/
+.avenir-heavy-oblique {
+    font-family: 'avenir', sans-serif;
+    font-weight: 800;
+    font-style: oblique;
+}
+
+/* Black */
+.avenir-black {
+    font-family: 'avenir', sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* Black Oblique */
+.avenir-black-oblique {
+    font-family: 'avenir', sans-serif;
+    font-weight: 900;
+    font-style: oblique;
+}

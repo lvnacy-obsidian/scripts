@@ -1,0 +1,23 @@
+.league-gothic-normal {
+    font-family: 'league-gothic', sans-serif;
+    font-style: normal;
+    font-stretch: normal; /* Uses regular */
+}
+
+.league-gothic-italic {
+    font-family: 'league-gothic', sans-serif;
+    font-style: italic;
+    font-stretch: normal; /* Uses italic */
+}
+
+.league-gothic-condensed {
+    font-family: 'league-gothic', sans-serif;
+    font-style: normal;
+    font-stretch: condensed; /* Uses condensed */
+}
+
+.league-gothic-condensed-italic {
+    font-family: 'league-gothic', sans-serif;
+    font-style: italic;
+    font-stretch: condensed; /* Uses condensed italic */
+}

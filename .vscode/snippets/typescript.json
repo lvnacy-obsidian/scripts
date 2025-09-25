@@ -1,0 +1,235 @@
+{
+  "TypeScript Plugin Boilerplate": {
+    "prefix": "obs-ts-plugin",
+    "body": [
+      "import { Plugin, TFile, Notice } from 'obsidian';",
+      "",
+      "export default class ${1:PluginName} extends Plugin {",
+      "  async onload(): Promise<void> {",
+      "    console.log('Loading ${1:PluginName}');",
+      "    $0",
+      "  }",
+      "",
+      "  onunload(): void {",
+      "    console.log('Unloading ${1:PluginName}');",
+      "  }",
+      "}"
+    ],
+    "description": "TypeScript Obsidian plugin structure"
+  },
+  
+  "Settings Interface": {
+    "prefix": "obs-settings-interface",
+    "body": [
+      "interface ${1:PluginName}Settings {",
+      "  ${2:settingName}: ${3:string};",
+      "  $0",
+      "}",
+      "",
+      "const DEFAULT_SETTINGS: ${1:PluginName}Settings = {",
+      "  ${2:settingName}: '${4:defaultValue}'",
+      "}"
+    ],
+    "description": "Plugin settings interface and defaults"
+  },
+  
+  "Settings Tab": {
+    "prefix": "obs-settings-tab",
+    "body": [
+      "import { PluginSettingTab, Setting } from 'obsidian';",
+      "",
+      "export class ${1:PluginName}SettingsTab extends PluginSettingTab {",
+      "  plugin: ${2:PluginType};",
+      "",
+      "  constructor(app: App, plugin: ${2:PluginType}) {",
+      "    super(app, plugin);",
+      "    this.plugin = plugin;",
+      "  }",
+      "",
+      "  display(): void {",
+      "    const { containerEl } = this;",
+      "    containerEl.empty();",
+      "",
+      "    new Setting(containerEl)",
+      "      .setName('${3:Setting Name}')",
+      "      .setDesc('${4:Setting description}')",
+      "      .addText(text => text",
+      "        .setPlaceholder('${5:placeholder}')",
+      "        .setValue(this.plugin.settings.${6:settingKey})",
+      "        .onChange(async (value) => {",
+      "          this.plugin.settings.${6:settingKey} = value;",
+      "          await this.plugin.saveSettings();",
+      "        }));",
+      "    $0",
+      "  }",
+      "}"
+    ],
+    "description": "Settings tab class with example setting"
+  },
+  
+  "Modal Class": {
+    "prefix": "obs-modal",
+    "body": [
+      "import { Modal, App } from 'obsidian';",
+      "",
+      "export class ${1:ModalName} extends Modal {",
+      "  constructor(app: App) {",
+      "    super(app);",
+      "  }",
+      "",
+      "  onOpen() {",
+      "    const { contentEl } = this;",
+      "    contentEl.setText('${2:Modal content}');",
+      "    $0",
+      "  }",
+      "",
+      "  onClose() {",
+      "    const { contentEl } = this;",
+      "    contentEl.empty();",
+      "  }",
+      "}"
+    ],
+    "description": "Custom modal class"
+  },
+  
+  "Suggest Modal": {
+    "prefix": "obs-suggest-modal",
+    "body": [
+      "import { SuggestModal } from 'obsidian';",
+      "",
+      "interface ${1:ItemType} {",
+      "  name: string;",
+      "  $0",
+      "}",
+      "",
+      "export class ${2:ModalName} extends SuggestModal<${1:ItemType}> {",
+      "  getSuggestions(query: string): ${1:ItemType}[] {",
+      "    return ${3:items}.filter(item => ",
+      "      item.name.toLowerCase().includes(query.toLowerCase())",
+      "    );",
+      "  }",
+      "",
+      "  renderSuggestion(item: ${1:ItemType}, el: HTMLElement) {",
+      "    el.createEl('div', { text: item.name });",
+      "  }",
+      "",
+      "  onChooseSuggestion(item: ${1:ItemType}, evt: MouseEvent | KeyboardEvent) {",
+      "    // Handle selection",
+      "  }",
+      "}"
+    ],
+    "description": "Suggest modal for item selection"
+  },
+  
+  "Ribbon Icon": {
+    "prefix": "obs-ribbon",
+    "body": [
+      "this.addRibbonIcon('${1:icon-name}', '${2:tooltip}', (evt: MouseEvent) => {",
+      "  $0",
+      "});"
+    ],
+    "description": "Add ribbon icon with callback"
+  },
+  
+  "Status Bar": {
+    "prefix": "obs-status-bar",
+    "body": [
+      "const statusBarItem = this.addStatusBarItem();",
+      "statusBarItem.setText('${1:status text}');",
+      "$0"
+    ],
+    "description": "Add status bar item"
+  },
+  
+  "Event Handler": {
+    "prefix": "obs-event",
+    "body": [
+      "this.registerEvent(",
+      "  this.app.workspace.on('${1:event-name}', (${2:args}) => {",
+      "    $0",
+      "  })",
+      ");"
+    ],
+    "description": "Register event handler"
+  },
+  
+  "File Menu Handler": {
+    "prefix": "obs-file-menu",
+    "body": [
+      "this.registerEvent(",
+      "  this.app.workspace.on('file-menu', (menu, file) => {",
+      "    menu.addItem((item) => {",
+      "      item",
+      "        .setTitle('${1:Menu Item}')",
+      "        .setIcon('${2:icon}')",
+      "        .onClick(async () => {",
+      "          $0",
+      "        });",
+      "    });",
+      "  })",
+      ");"
+    ],
+    "description": "Add file context menu item"
+  },
+  
+  "CodeScript TypeScript Invocable": {
+    "prefix": "cs-ts-invoke",
+    "body": [
+      "import type { App } from 'obsidian';",
+      "",
+      "export async function invoke(app: App): Promise<void> {",
+      "  ${1:// Your TypeScript script logic here}",
+      "  $0",
+      "}"
+    ],
+    "description": "CodeScript TypeScript invocable function"
+  },
+  
+  "CodeScript TypeScript Module": {
+    "prefix": "cs-ts-module",
+    "body": [
+      "import type { App, TFile, Notice } from 'obsidian';",
+      "",
+      "export interface ${1:ModuleName}Config {",
+      "  ${2:property}: ${3:string};",
+      "}",
+      "",
+      "export class ${1:ModuleName} {",
+      "  constructor(private app: App, private config: ${1:ModuleName}Config) {}",
+      "",
+      "  async ${4:methodName}(): Promise<${5:void}> {",
+      "    ${6:// Method implementation}",
+      "    $0",
+      "  }",
+      "}"
+    ],
+    "description": "CodeScript TypeScript module with types"
+  },
+  
+  "CodeScript Advanced Button": {
+    "prefix": "cs-advanced-button",
+    "body": [
+      "\\`\\`\\`code-button",
+      "---",
+      "caption: ${1:Advanced Button}",
+      "shouldAutoOutput: false",
+      "shouldWrapConsole: true",
+      "shouldAutoRun: ${2:false}",
+      "isRaw: ${3:false}",
+      "---",
+      "import type { App, TFile } from 'obsidian';",
+      "",
+      "// Access CodeScript context",
+      "const { app, sourceFile, container } = codeButtonContext;",
+      "",
+      "// Your advanced logic here",
+      "${4:// Implementation}",
+      "",
+      "// Render results",
+      "await codeButtonContext.renderMarkdown(\\`**Result:** \\${${5:result}}\\`);",
+      "$0",
+      "\\`\\`\\`"
+    ],
+    "description": "Advanced CodeScript button with full TypeScript support"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "globalSnippets": {
+    "javascript": {
+      "CodeScript Import App": {
+        "prefix": "cs-app",
+        "body": [
+          "const app = require('obsidian/app');"
+        ],
+        "description": "Import Obsidian app instance"
+      }
+    },
+    "typescript": {
+      "TypeScript Import Statement": {
+        "prefix": "import-obsidian",
+        "body": [
+          "import type { ${1:App, TFile, Notice} } from 'obsidian';"
+        ],
+        "description": "Import Obsidian types"
+      }
+    }
+  },
+  "languageOverrides": {
+    "typescript": {
+      "fileExtensions": [".ts", ".mts", ".cts"],
+      "additionalPrefixes": ["ts-", "obsidian-ts-"]
+    }
+  },
+  "buildSettings": {
+    "placeholderFormat": "vscode",
+    "includeFileComments": true,
+    "sortSnippets": true,
+    "validateSyntax": false
+  },
+  "categories": {
+    "obsidian-api": {
+      "prefixPattern": "obs-*",
+      "description": "Core Obsidian API snippets"
+    },
+    "codescript": {
+      "prefixPattern": "cs-*",
+      "description": "CodeScript Toolkit specific snippets"
+    },
+    "utilities": {
+      "prefixPattern": "util-*",
+      "description": "General utility functions and helpers"
+    }
+  }
+}

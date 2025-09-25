@@ -1,11 +1,11 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": ".."
 		}
 	],
 	"settings": {
-		"workbench.colorTheme": "Dracula Theme Soft",
+		"workbench.colorTheme": "Default Dark Modern",
 		"[markdown]": {
 			"editor.unicodeHighlight.ambiguousCharacters": false,
 			"editor.unicodeHighlight.invisibleCharacters": false,

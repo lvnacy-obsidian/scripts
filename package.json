@@ -22,6 +22,14 @@
   "type": "module",
   "main": "scripts.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:snippets": "node build-snippets.js",
+    "watch:snippets": "node build-snippets.js --watch",
+    "dev": "npm run watch:snippets",
+    "setup": "npm run build:snippets && echo '✅ Snippets built successfully!'",
+    "clean": "rm -rf .vscode/snippets/*.json",
+    "validate": "node build-snippets.js --validate"
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.3"
   }
 }

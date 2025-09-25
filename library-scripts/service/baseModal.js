@@ -50,8 +50,9 @@ function setModalBackground(app, imagePath) {
 export class BaseModal extends Modal {
     resolve;
     reject;
-    constructor(app, onSubmit, backgroundImage = null) {
+    constructor(app, createForm, onSubmit, backgroundImage = null) {
         super(app);
+        this.createForm = createForm;
         this.onSubmit = onSubmit;
         this.backgroundImage = backgroundImage;
         
@@ -84,8 +85,6 @@ export class BaseModal extends Modal {
         
         this.createForm();
     }
-
-    createForm() {};
 
     resolveAndClose(evt, value) {
         evt.preventDefault();

@@ -1,0 +1,236 @@
+{
+  "Obsidian Plugin Boilerplate": {
+    "prefix": "obs-plugin",
+    "body": [
+      "const { Plugin } = require('obsidian');",
+      "",
+      "module.exports = class ${1:PluginName} extends Plugin {",
+      "  async onload() {",
+      "    console.log('Loading ${1:PluginName}');",
+      "    $0",
+      "  }",
+      "",
+      "  onunload() {",
+      "    console.log('Unloading ${1:PluginName}');",
+      "  }",
+      "};"
+    ],
+    "description": "Basic Obsidian plugin structure"
+  },
+  
+  "Add Command": {
+    "prefix": "obs-command",
+    "body": [
+      "this.addCommand({",
+      "  id: '${1:command-id}',",
+      "  name: '${2:Command Name}',",
+      "  callback: () => {",
+      "    $0",
+      "  }",
+      "});"
+    ],
+    "description": "Add a command to Obsidian plugin"
+  },
+  
+  "Get Active File": {
+    "prefix": "obs-active-file",
+    "body": [
+      "const activeFile = this.app.workspace.getActiveFile();",
+      "if (!activeFile) {",
+      "  new Notice('No active file');",
+      "  return;",
+      "}",
+      "$0"
+    ],
+    "description": "Get the currently active file"
+  },
+  
+  "Read File Content": {
+    "prefix": "obs-read-file",
+    "body": [
+      "const content = await this.app.vault.read(${1:file});",
+      "$0"
+    ],
+    "description": "Read content from a file"
+  },
+  
+  "Modify File Content": {
+    "prefix": "obs-modify-file",
+    "body": [
+      "await this.app.vault.modify(${1:file}, ${2:newContent});",
+      "$0"
+    ],
+    "description": "Modify file content"
+  },
+  
+  "Create New File": {
+    "prefix": "obs-create-file",
+    "body": [
+      "const newFile = await this.app.vault.create('${1:path/filename.md}', '${2:content}');",
+      "$0"
+    ],
+    "description": "Create a new file"
+  },
+  
+  "Show Notice": {
+    "prefix": "obs-notice",
+    "body": [
+      "new Notice('${1:message}');",
+      "$0"
+    ],
+    "description": "Show a notice popup"
+  },
+  
+  "Get All Files": {
+    "prefix": "obs-all-files",
+    "body": [
+      "const files = this.app.vault.getMarkdownFiles();",
+      "$0"
+    ],
+    "description": "Get all markdown files in vault"
+  },
+  
+  "Process Frontmatter": {
+    "prefix": "obs-frontmatter",
+    "body": [
+      "const cache = this.app.metadataCache.getFileCache(${1:file});",
+      "const frontmatter = cache?.frontmatter;",
+      "if (frontmatter) {",
+      "  $0",
+      "}"
+    ],
+    "description": "Access file frontmatter"
+  },
+  
+  "Get File by Path": {
+    "prefix": "obs-get-file",
+    "body": [
+      "const file = this.app.vault.getAbstractFileByPath('${1:path}');",
+      "if (file instanceof TFile) {",
+      "  $0",
+      "}"
+    ],
+    "description": "Get file by path with type check"
+  },
+  
+  "CodeScript Invocable Function": {
+    "prefix": "cs-invoke",
+    "body": [
+      "import { App } from 'obsidian';",
+      "",
+      "export async function invoke(app) {",
+      "  ${1:// Your script logic here}",
+      "  $0",
+      "}"
+    ],
+    "description": "CodeScript invocable function"
+  },
+  
+  "CodeScript Code Button": {
+    "prefix": "cs-button",
+    "body": [
+      "\\`\\`\\`code-button",
+      "---",
+      "caption: ${1:Click me!}",
+      "shouldAutoOutput: ${2:true}",
+      "shouldWrapConsole: ${3:true}",
+      "---",
+      "${4:// Your code here}",
+      "$0",
+      "\\`\\`\\`"
+    ],
+    "description": "CodeScript code button block"
+  },
+  
+  "CodeScript Module Import": {
+    "prefix": "cs-require",
+    "body": [
+      "const ${1:module} = await requireAsync('${2:./path/to/module}');",
+      "$0"
+    ],
+    "description": "CodeScript async require for ES modules"
+  },
+  
+  "CodeScript Note Script": {
+    "prefix": "cs-note-script",
+    "body": [
+      "\\`\\`\\`code-script",
+      "// codeScriptName: ${1:scriptName}",
+      "export async function ${2:functionName}(${3:params}) {",
+      "  ${4:// Your function logic here}",
+      "  $0",
+      "}",
+      "\\`\\`\\`"
+    ],
+    "description": "CodeScript note-embedded script block"
+  }
+  
+  "Insert Current Date": {
+    "prefix": "obs-date",
+    "body": [
+      "const now = new Date();",
+      "const dateString = now.toISOString().split('T')[0]; // YYYY-MM-DD",
+      "$0"
+    ],
+    "description": "Generate current date string"
+  },
+  
+  "CodeScript Temp Plugin": {
+    "prefix": "cs-temp-plugin",
+    "body": [
+      "import { Plugin } from 'obsidian';",
+      "",
+      "class ${1:TempPlugin} extends Plugin {",
+      "  async onload() {",
+      "    console.log('Loading ${1:TempPlugin}');",
+      "    ${2:// Plugin initialization logic}",
+      "    $0",
+      "  }",
+      "",
+      "  onunload() {",
+      "    console.log('Unloading ${1:TempPlugin}');",
+      "  }",
+      "}",
+      "",
+      "codeButtonContext.registerTempPlugin(${1:TempPlugin});"
+    ],
+    "description": "CodeScript temporary plugin for prototyping"
+  },
+  
+  "CodeScript Button Context": {
+    "prefix": "cs-context",
+    "body": [
+      "// Access button context properties",
+      "const { container, sourceFile } = codeButtonContext;",
+      "",
+      "// Render markdown in results panel",
+      "await codeButtonContext.renderMarkdown('**${1:Your markdown}**');",
+      "",
+      "// Modify the containing note",
+      "// await codeButtonContext.insertAfterCodeButtonBlock('${2:content}');",
+      "// await codeButtonContext.insertBeforeCodeButtonBlock('${3:content}');",
+      "// await codeButtonContext.replaceCodeBlock('${4:replacement}');",
+      "$0"
+    ],
+    "description": "CodeScript button context utilities"
+  },
+  
+  "CodeScript Startup Script": {
+    "prefix": "cs-startup",
+    "body": [
+      "import { App } from 'obsidian';",
+      "",
+      "export async function invoke(app) {",
+      "  console.log('Startup script loaded');",
+      "  ${1:// Initialization logic}",
+      "  $0",
+      "}",
+      "",
+      "export async function cleanup(app) {",
+      "  console.log('Startup script cleanup');",
+      "  ${2:// Cleanup logic}",
+      "}"
+    ],
+    "description": "CodeScript startup script with cleanup"
+  }
+}

@@ -1,8 +1,12 @@
 /**
  * THIS IS A TEMPLATE FILE
  * Copy and paste this into the commands folder and edit accordingly
+ * Remove the ESlint ignore comments
+ * Adjust the import paths as needed
+ * Adjust the background image path as needed
 */
 
+/* eslint-disable */
 import {
     fileManager,
     vault

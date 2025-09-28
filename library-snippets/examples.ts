@@ -4,10 +4,12 @@
 // @snippet-description: Type-safe invocable function for CodeScript
 
 import type { App } from 'obsidian';
+import { Notice } from 'obsidian';
+import { Log } from '../utilities/logger-obsidian-scripts.js';
 
 export async function invoke(app: App): Promise<void> {
-  ${IMPLEMENTATION}
-  ${CURSOR}
+	${IMPLEMENTATION}
+	${CURSOR}
 }
 
 // Example: library/javascript/obsidian-api/get-active-file.js
@@ -17,8 +19,8 @@ export async function invoke(app: App): Promise<void> {
 
 const activeFile = this.app.workspace.getActiveFile();
 if (!activeFile) {
-  new Notice('No active file');
-  return;
+	new Notice('No active file');
+	return;
 }
 ${CURSOR}
 
@@ -53,16 +55,16 @@ ${CURSOR}
 // @snippet-prefix: obs-ts-plugin
 // @snippet-description: Complete TypeScript plugin structure
 
-import { Plugin, TFile, Notice } from 'obsidian';
+import { Plugin, TFile } from 'obsidian';
 
 export default class ${PLUGIN_NAME} extends Plugin {
-  async onload(): Promise<void> {
-    console.log('Loading ${PLUGIN_NAME}');
-    ${INITIALIZATION}
-  }
+	async onload(): Promise<void> {
+		console.log('Loading ${PLUGIN_NAME}');
+		${INITIALIZATION}
+	}
 
-  onunload(): void {
-    console.log('Unloading ${PLUGIN_NAME}');
-    ${CLEANUP}
-  }
+	onunload(): void {
+		console.log('Unloading ${PLUGIN_NAME}');
+		${CLEANUP}
+	}
 }

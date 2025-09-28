@@ -56,19 +56,6 @@ function extractMetadata(content, filePath) {
 		}
 	});
 
-	/*
-	for (const line of lines) {
-		const trimmed = line.trim();
-			if (trimmed.startsWith('// @snippet-name:')) {
-				metadata.name = trimmed.replace('// @snippet-name:', '').trim();
-			} else if (trimmed.startsWith('// @snippet-prefix:')) {
-				metadata.prefix = trimmed.replace('// @snippet-prefix:', '').trim();
-			} else if (trimmed.startsWith('// @snippet-description:')) {
-				metadata.description = trimmed.replace('// @snippet-description:', '').trim();
-			}
-	}
-	*/
-
 	// Generate defaults if not provided
 	const fileName = path.basename(filePath, path.extname(filePath));
 	metadata.name = metadata.name || fileName.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -90,16 +77,6 @@ function cleanContent(content) {
 			return line;
 		}
 	});
-
-	/*
-	for (const line of lines) {
-		const trimmed = line.trim();
-		// Skip metadata comments
-		if (!trimmed.startsWith('// @snippet-')) {
-		cleaned.push(line);
-		}
-	}
-	*/
   
 	// Remove leading/trailing empty lines
 	while (cleaned.length > 0 && cleaned[0].trim() === '') {
@@ -122,14 +99,16 @@ function processPlaceholders(lines) {
 	
 	return lines.map(line => {
 		return line.replace(/\$\{([^}]+)\}/g, (match, placeholder) => {
-		if (placeholder === '0') return '$0'; // Final cursor position
-		
-		if (!placeholderMap.has(placeholder)) {
-			placeholderMap.set(placeholder, placeholderIndex++);
-		}
-		
-		const index = placeholderMap.get(placeholder);
-		return `\${${index}:${placeholder}}`;
+			if (placeholder === '0') {
+				return '$0'; // Final cursor position
+			}
+			
+			if (!placeholderMap.has(placeholder)) {
+				placeholderMap.set(placeholder, placeholderIndex++);
+			}
+			
+			const index = placeholderMap.get(placeholder);
+			return `\${${index}:${placeholder}}`;
 		});
 	});
 }
@@ -200,8 +179,7 @@ async function generateLanguageSnippets(language, config) {
 	const globalSnippets = config.globalSnippets[language] || {};
 	Object.assign(snippets, globalSnippets);
 	
-	// for (const filePath of files) {
-	files.forEach(async file => {
+	files.forEach(async filePath => {
 		try {
 			const content = await fs.readFile(filePath, 'utf8');
 			const metadata = extractMetadata(content, filePath);
@@ -269,8 +247,8 @@ async function watchMode() {
 		});
 		
 		let buildTimeout;
-		watcher.on('change', (path) => {
-			Log.info(logContext, `\n📝 File changed: ${path}`);
+		watcher.on('change', (filePath) => {
+			Log.info(logContext, `\n📝 File changed: ${ filePath }`);
 			clearTimeout(buildTimeout);
 			buildTimeout = setTimeout(buildSnippets, 500); // Debounce
 		});

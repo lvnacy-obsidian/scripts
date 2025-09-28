@@ -29,5 +29,11 @@
 				"savePathReplacementPairs": null
 			}
 		]
+	},
+	"extensions": {
+		"recommendations": [
+			"syler.sass-indented",
+			"glenn2223.live-sass"
+		]
 	}
 }

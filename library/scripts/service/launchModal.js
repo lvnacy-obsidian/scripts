@@ -1,4 +1,4 @@
-import { BaseModal } from './baseModal';
+import { BaseModal } from './baseModal.js';
 import { Log } from '../utilities/logger-obsidian-scripts.js';
 
 // set the logging context

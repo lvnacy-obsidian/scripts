@@ -24,17 +24,29 @@ This release introduces comprehensive ESLint integration, code quality improveme
   - `@stylistic/eslint-plugin@^5.4.0`
 
 ### Build System Improvements
-- **Code cleanup** in `build-snippets.js`:
+- **Major restructuring** in `build-snippets.js`:
+  - Updated library path to unified `library/` structure
   - Removed commented-out legacy code
   - Streamlined metadata extraction logic
   - Improved placeholder processing efficiency
   - Enhanced error handling and logging
+  - Fixed import paths for consolidated utilities
+  - Added parallel file processing for better performance
 
-## 📚 Library Enhancements
+## 📚 Library Enhancements & Restructuring
+
+### Major Library Consolidation
+- **Unified library structure**: Consolidated `library-scripts/` and `library-snippets/` into single `library/` directory
+- **Improved organization**:
+  - `library/scripts/` - Core template and service components (formerly `library-scripts/`)
+  - `library/snippets-vscode/` - VS Code snippet source files (formerly `library-snippets/`)
+  - `library/utilities/` - Shared utilities and loggers (formerly root `utilities/`)
+- **Cleaner build configuration**: Updated `build-snippets.js` to use unified library path
+- **Enhanced directory structure** with better separation of concerns
 
 ### New TypeScript Examples
-- **Created `library-snippets/examples.ts`** replacing `example.ts`
-- **Comprehensive snippet collection** including:
+- **Created comprehensive TypeScript examples** in `library/snippets-vscode/examples.ts`
+- **Snippet collection** including:
   - TypeScript invocable functions for CodeScript
   - Advanced button configurations
   - Plugin boilerplate templates
@@ -60,6 +72,24 @@ This release introduces comprehensive ESLint integration, code quality improveme
   - Better integration with modal system
   - Consistent coding patterns
 
+## 🗂️ File Cleanup & Organization
+
+### Removed Legacy Files
+- **Eliminated outdated structure**:
+  - Removed old `library-scripts/` and `library-snippets/` directories
+  - Cleaned up orphaned `.gitkeep` files
+  - Removed duplicate documentation files
+  - Eliminated deprecated styling files (`styles/` directory)
+  - Removed legacy reference files (`reference/modalEl.json`)
+- **Consolidated documentation**: Moved VS Code snippet README to `docs/snippets-reference/`
+- **Streamlined todo management**: Consolidated todo items into root `todo.md`
+
+### Directory Structure Optimization
+- **Logical grouping**: Related files now grouped under appropriate subdirectories
+- **Reduced directory depth**: Eliminated unnecessary nesting
+- **Consistent naming**: Standardized naming conventions across file structure
+- **Path optimization**: Updated all import/export paths for new structure
+
 ## 🧹 Code Quality Improvements
 
 ### Formatting & Style
@@ -82,27 +112,42 @@ This release introduces comprehensive ESLint integration, code quality improveme
 ## 📁 File Changes
 
 ### Modified Files
-- `build-snippets.js` - Build system improvements and cleanup
-- `library-scripts/service/baseModal.js` - Enhanced modal base class
-- `library-scripts/service/launchModal.js` - Improved launch service
-- `library-scripts/templates/example.js` - Template example updates
-- `library-scripts/templates/template.js` - Core template improvements
+- `build-snippets.js` - Major restructuring with unified library paths and performance improvements
+- `library/scripts/service/baseModal.js` - Enhanced modal base class (moved from `library-scripts/`)
+- `library/scripts/service/launchModal.js` - Improved launch service (moved from `library-scripts/`)
+- `library/scripts/templates/example.js` - Template example updates (moved from `library-scripts/`)
+- `library/scripts/templates/template.js` - Core template improvements (moved from `library-scripts/`)
+- `library/utilities/*.js` - All utility modules moved from root `utilities/` to `library/utilities/`
 - `package.json` - ESLint dependencies and scripts
 - `package-lock.json` - Dependency lock file updates
+- `.vscode/codescript-sass.code-workspace` - Updated for new directory structure
 
 ### New Files
 - `eslint.config.js` - ESLint configuration with modern flat config
-- `library-snippets/examples.ts` - Comprehensive TypeScript examples
+- `library/snippets-vscode/examples.ts` - Comprehensive TypeScript examples
+- `docs/snippets-reference/README.md` - Consolidated snippet documentation
+- `todo.md` - Consolidated todo items at project root
 
-### Removed Files
-- `library-snippets/example.ts` - Replaced with enhanced `examples.ts`
+### Removed Files & Directories
+- `library-scripts/` - Entire directory consolidated into `library/scripts/`
+- `library-snippets/` - Entire directory moved to `library/snippets-vscode/`
+- `utilities/` - Moved to `library/utilities/`
+- `styles/` - Entire styling directory removed (fonts, CSS, SASS files)
+- `reference/modalEl.json` - Legacy reference file removed
+- `.vscode/snippets/README.md` - Moved to `docs/snippets-reference/README.md`
+- `docs/todo.md` - Consolidated into root `todo.md`
+- Multiple `.gitkeep` placeholder files removed after structure consolidation
 
 ## 🔄 Migration Notes
 
 ### For Developers
 - **Linting**: Run `npm run lint` to check code quality
-- **New examples**: Use `library-snippets/examples.ts` for TypeScript snippets
-- **Build process**: No changes to existing build commands
+- **New library structure**: All development files now under `library/` directory
+  - Scripts: `library/scripts/`
+  - Snippets: `library/snippets-vscode/`
+  - Utilities: `library/utilities/`
+- **Updated imports**: Import paths changed to reflect new structure (e.g., `./library/utilities/logger-obsidian-scripts.js`)
+- **Build process**: Build commands remain the same, but now process unified library structure
 - **Dependencies**: Run `npm install` to get new ESLint packages
 
 ### For Users
@@ -119,9 +164,11 @@ This release introduces comprehensive ESLint integration, code quality improveme
 
 ### Future Enhancements
 - [ ] Consider adding TypeScript build process
-- [ ] Expand example library with more use cases
+- [ ] Expand example library with more use cases in `library/snippets-vscode/`
 - [ ] Add automated testing for modal system
 - [ ] Consider Prettier integration for formatting
+- [ ] Evaluate further consolidation opportunities in unified library structure
+- [ ] Add validation for import path consistency across consolidated structure
 
 ## 🔗 Technical Details
 

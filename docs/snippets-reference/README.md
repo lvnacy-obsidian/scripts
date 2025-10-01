@@ -35,3 +35,20 @@ npm run build:snippets        # One-time build
 npm run watch:snippets        # Watch mode for development
 npm run dev                   # Alias for watch mode
 ```
+
+### Manual Testing Workflow
+```bash
+# Write a snippet file
+# library/typescript/my-snippet.ts
+
+# Test it
+npm run validate:snippets    # Validate the snippet
+npm run lint:library         # Lint the snippet
+npm run build:snippets       # Build to JSON
+
+# Or all at once
+npm run test:snippets        # Lint + validate snippets
+
+# Full quality check before commit
+npm run precommit            # Lint + validate + build
+```

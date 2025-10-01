@@ -40,6 +40,14 @@
       "prefixPattern": "cs-*",
       "description": "CodeScript Toolkit specific snippets"
     },
+    "datacore": {
+      "prefixPattern": "dc-*",
+      "description": "Datacore related snippets"
+    },
+    "plugin-dev": {
+      "prefixPattern": "plugin-*",
+      "description": "Snippets for Obsidian plugin development"
+    },
     "utilities": {
       "prefixPattern": "util-*",
       "description": "General utility functions and helpers"

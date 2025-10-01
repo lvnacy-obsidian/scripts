@@ -1,0 +1,48 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Node.js Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/tests/unit/build-snippets.test.js",
+      "args": ["--test"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    {
+      "name": "Run Validation Script",
+      "type": "node", 
+      "request": "launch",
+      "program": "${workspaceFolder}/tests/validate-snippets.js",
+      "args": ["--verbose"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "Build Snippets",
+      "type": "node",
+      "request": "launch", 
+      "program": "${workspaceFolder}/build-snippets.js",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "Debug Current File",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}

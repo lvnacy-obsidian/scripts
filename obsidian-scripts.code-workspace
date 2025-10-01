@@ -1,7 +1,7 @@
 {
 	"folders": [
 		{
-			"path": ".."
+			"path": "."
 		}
 	],
 	"settings": {
@@ -33,7 +33,8 @@
 	"extensions": {
 		"recommendations": [
 			"syler.sass-indented",
-			"glenn2223.live-sass"
+			"glenn2223.live-sass",
+			"ms-vscode-remote.remote-containers"
 		]
 	}
 }

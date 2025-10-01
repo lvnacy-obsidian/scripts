@@ -1,31 +1,31 @@
 #!/usr/bin/env node
 
-import { Log } from "./library/utilities/logger-obsidian-scripts.js";
+import { Log } from './library/utilities/logger-obsidian-scripts.js';
 
-import fs from "fs/promises";
-import path from "path";
-import { fileURLToPath } from "url";
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Context for logging
 const logContext = {
-	context: "build-snippets.js",
- 	path: "js/build-snippets.js",
+	context: 'build-snippets.js',
+	path: 'js/build-snippets.js',
 };
 
 // Configuration
 const CONFIG = {
-  libraryDir: path.join(__dirname, "library"),
-  outputDir: path.join(__dirname, ".vscode", "snippets"),
-  configFile: path.join(__dirname, "snippet-config.json"),
-  languages: {
-	javascript: { ext: [".js"], output: "javascript.json" },
-	typescript: { ext: [".ts"], output: "typescript.json" },
-	jsx: { ext: [".jsx"], output: "javascriptreact.json" },
-	tsx: { ext: [".tsx"], output: "typescriptreact.json" },
-  },
+	libraryDir: path.join(__dirname, 'library'),
+	outputDir: path.join(__dirname, '.vscode', 'snippets'),
+	configFile: path.join(__dirname, 'snippet-config.json'),
+	languages: {
+		javascript: { ext: ['.js'], output: 'javascript.json' },
+		typescript: { ext: ['.ts'], output: 'typescript.json' },
+		jsx: { ext: ['.jsx'], output: 'javascriptreact.json' },
+		tsx: { ext: ['.tsx'], output: 'typescriptreact.json' },
+	},
 };
 
 /**
@@ -36,20 +36,20 @@ const CONFIG = {
  * // @snippet-description: Description of the snippet
  */
 function extractMetadata(content, filePath) {
-	const lines = content.split("\n");
+	const lines = content.split('\n');
 	const metadata = {};
 
 	// Extract from comment blocks
 	lines.forEach((line) => {
 		const trimmed = line.trim();
-		if (trimmed.startsWith("// @snippet-name:")) {
-		metadata.name = trimmed.replace("// @snippet-name:", "").trim();
-		} else if (trimmed.startsWith("// @snippet-prefix:")) {
-		metadata.prefix = trimmed.replace("// @snippet-prefix:", "").trim();
-		} else if (trimmed.startsWith("// @snippet-description:")) {
-		metadata.description = trimmed
-			.replace("// @snippet-description:", "")
-			.trim();
+		if (trimmed.startsWith('// @snippet-name:')) {
+			metadata.name = trimmed.replace('// @snippet-name:', '').trim();
+		} else if (trimmed.startsWith('// @snippet-prefix:')) {
+			metadata.prefix = trimmed.replace('// @snippet-prefix:', '').trim();
+		} else if (trimmed.startsWith('// @snippet-description:')) {
+			metadata.description = trimmed
+				.replace('// @snippet-description:', '')
+				.trim();
 		}
 	});
 
@@ -57,12 +57,12 @@ function extractMetadata(content, filePath) {
 	const fileName = path.basename(filePath, path.extname(filePath));
 	metadata.name =
 		metadata.name ||
-		fileName.replace(/[-_]/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
+		fileName.replace(/[-_]/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
 	metadata.prefix =
 		metadata.prefix ||
 		fileName
-		.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)
-		.replace(/^-/, "");
+			.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)
+			.replace(/^-/, '');
 	metadata.description = metadata.description || `${metadata.name} snippet`;
 
 	return metadata;
@@ -72,20 +72,20 @@ function extractMetadata(content, filePath) {
  * Clean content by removing metadata comments and formatting for snippets
  */
 function cleanContent(content) {
-	const lines = content.split("\n");
+	const lines = content.split('\n');
 	const cleaned = lines
 		.filter((line) => {
-		const trimmed = line.trim();
-		// Keep lines that don't start with snippet metadata comments
-		return !trimmed.startsWith("// @snippet-");
+			const trimmed = line.trim();
+			// Keep lines that don't start with snippet metadata comments
+			return !trimmed.startsWith('// @snippet-');
 		})
 		.filter((line) => line !== undefined); // Remove undefined entries
 
 	// Remove leading/trailing empty lines
-	while (cleaned.length > 0 && cleaned[0].trim() === "") {
+	while (cleaned.length > 0 && cleaned[0].trim() === '') {
 		cleaned.shift();
 	}
-	while (cleaned.length > 0 && cleaned[cleaned.length - 1].trim() === "") {
+	while (cleaned.length > 0 && cleaned[cleaned.length - 1].trim() === '') {
 		cleaned.pop();
 	}
 
@@ -102,8 +102,8 @@ function processPlaceholders(lines) {
 
 	return lines.map((line) => {
 		return line.replace(/\$\{([^}]+)\}/g, (match, placeholder) => {
-			if (placeholder === "0") {
-				return "$0"; // Final cursor position
+			if (placeholder === '0') {
+				return '$0'; // Final cursor position
 			}
 
 			if (!placeholderMap.has(placeholder)) {
@@ -141,9 +141,9 @@ async function findFiles(dir, extensions) {
 			`Warning: Could not read directory ${dir}:`,
 			error.message
 		);
-  }
+	}
 
-  return files;
+	return files;
 }
 
 /**
@@ -151,10 +151,10 @@ async function findFiles(dir, extensions) {
  */
 async function loadConfig() {
 	try {
-		const configContent = await fs.readFile(CONFIG.configFile, "utf8");
+		const configContent = await fs.readFile(CONFIG.configFile, 'utf8');
 		return JSON.parse(configContent);
 	} catch (error) {
-		Log.info(logContext, "No additional config found, using defaults");
+		Log.error(logContext, 'No additional config found, using defaults', error);
 		return {
 			globalSnippets: {},
 			languageOverrides: {}
@@ -175,7 +175,7 @@ async function generateLanguageSnippets(language, config) {
 	try {
 		await fs.access(languageDir);
 	} catch (error) {
-		Log.info(logContext, `No ${language} directory found, skipping...`);
+		Log.error(logContext, `No ${ language } directory found, skipping...`, error);
 		return;
 	}
 
@@ -189,7 +189,7 @@ async function generateLanguageSnippets(language, config) {
 	// Process files in parallel for better performance
 	const filePromises = files.map(async (filePath) => {
 		try {
-			const content = await fs.readFile(filePath, "utf8");
+			const content = await fs.readFile(filePath, 'utf8');
 			const metadata = extractMetadata(content, filePath);
 			const cleanedLines = cleanContent(content);
 			const processedLines = processPlaceholders(cleanedLines);
@@ -199,10 +199,10 @@ async function generateLanguageSnippets(language, config) {
 			return {
 				name: metadata.name,
 				snippet: {
-				prefix: metadata.prefix,
-				body: processedLines,
-				description: metadata.description,
-				},
+					prefix: metadata.prefix,
+					body: processedLines,
+					description: metadata.description
+				}
 			};
 		} catch (error) {
 			Log.error(logContext, `  ✗ Error processing ${filePath}:`, error.message);
@@ -233,7 +233,7 @@ async function generateLanguageSnippets(language, config) {
  * Main build function
  */
 async function buildSnippets() {
-	Log.info(logContext, "🔧 Building VS Code snippets from library files...");
+	Log.info(logContext, '🔧 Building VS Code snippets from library files...');
 
 	const startTime = Date.now();
 	const config = await loadConfig();
@@ -254,14 +254,14 @@ async function buildSnippets() {
  * Watch mode for development
  */
 async function watchMode() {
-	Log.info(logContext, "👀 Starting watch mode...");
-	Log.info(logContext, "Press Ctrl+C to stop");
+	Log.info(logContext, '👀 Starting watch mode...');
+	Log.info(logContext, 'Press Ctrl+C to stop');
 
 	// Initial build
 	await buildSnippets();
 
 	// Set up file watching (simplified version)
-	const chokidar = await import("chokidar").catch(() => null);
+	const chokidar = await import('chokidar').catch(() => null);
 
 	if (chokidar) {
 		const watcher = chokidar.default.watch(CONFIG.libraryDir, {
@@ -270,7 +270,7 @@ async function watchMode() {
 		});
 
 		let buildTimeout;
-		watcher.on("change", (filePath) => {
+		watcher.on('change', (filePath) => {
 			Log.info(logContext, `📝 File changed: ${filePath}`);
 			clearTimeout(buildTimeout);
 			buildTimeout = setTimeout(buildSnippets, 500); // Debounce
@@ -278,23 +278,23 @@ async function watchMode() {
 	} else {
 		Log.info(
 			logContext,
-			"Install chokidar for automatic rebuilding: npm install chokidar"
+			'Install chokidar for automatic rebuilding: npm install chokidar'
 		);
 		Log.info(
 			logContext,
-			"For now, run this script manually when files change."
+			'For now, run this script manually when files change.'
 		);
 	}
 }
 
 // CLI handling
 const args = process.argv.slice(2);
-const isWatchMode = args.includes("--watch") || args.includes("-w");
+const isWatchMode = args.includes('--watch') || args.includes('-w');
 
 if (isWatchMode) {
-  	watchMode().catch((error) => Log.error(logContext, "Watchmode error", error));
+	watchMode().catch((error) => Log.error(logContext, 'Watchmode error', error));
 } else {
 	buildSnippets().catch((error) =>
-		Log.error(logContext, "Error building snippets", error)
+		Log.error(logContext, 'Error building snippets', error)
 	);
 }

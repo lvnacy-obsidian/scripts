@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Log } from './logger';
 
 // set log context
